@@ -1,5 +1,6 @@
 import { Inject } from "typescript-ioc";
 import { AbstractFavoriteLinksRepository } from "../domain/contracts/abstractFavoriteLinksRepository";
+import { NotFoundException } from "../domain/errors/errors";
 
 export class GetAllFavoriteLinksUseCase {
 
@@ -9,6 +10,10 @@ export class GetAllFavoriteLinksUseCase {
     ) { }
 
     public async execute() {
-        await this.repository.getAll();
+        const links = await this.repository.getAll();
+
+        if (!links) {
+            throw new NotFoundException("Links não encontrados")
+        }
     }
 }

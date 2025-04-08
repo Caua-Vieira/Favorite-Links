@@ -1,4 +1,5 @@
 import { AbstractFavoriteLinksRepository } from "../../domain/contracts/abstractFavoriteLinksRepository";
+import { DatabaseException } from "../../domain/errors/errors";
 import { IFavoriteLinks } from "../../domain/types/favoriteLinksInterface";
 import { pool } from "../database/dbConnection";
 
@@ -14,7 +15,7 @@ export class FavoriteLinkRepository implements AbstractFavoriteLinksRepository {
 
             return result.rows[0];
         } catch (error) {
-            throw new Error("Method not implemented.");
+            throw new DatabaseException("Ocorreu um erro ao tentar inserir novo link");
         }
     }
 
@@ -24,7 +25,7 @@ export class FavoriteLinkRepository implements AbstractFavoriteLinksRepository {
 
             return result.rows[0];
         } catch (error) {
-            throw new Error("Method not implemented.");
+            throw new DatabaseException("Ocorreu um erro ao consultar banco de dados");
         }
     }
 
@@ -32,7 +33,7 @@ export class FavoriteLinkRepository implements AbstractFavoriteLinksRepository {
         try {
             await pool.query("DELETE FROM favorite_links WHERE id = $1", [id]);
         } catch (error) {
-            throw new Error("Method not implemented.");
+            throw new DatabaseException("Ocorreu um erro ao tentar deletar link do banco de dados");
         }
     }
 
@@ -45,7 +46,7 @@ export class FavoriteLinkRepository implements AbstractFavoriteLinksRepository {
 
             return result.rows[0];
         } catch (error) {
-            throw new Error("Method not implemented.");
+            throw new DatabaseException("Ocorreu um erro ao tentar atualizar links cadastrados");
         }
     }
 }
