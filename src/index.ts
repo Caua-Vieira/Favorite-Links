@@ -1,4 +1,4 @@
-import './infrastructure/config/ioc'
+import './infrastructure/config/ioc';
 import app from "./interfaces/server";
 
 const PORT = process.env.PORT || 3000;
