@@ -23,7 +23,7 @@ export class FavoriteLinkRepository implements AbstractFavoriteLinksRepository {
         try {
             const result = await pool.query("SELECT * FROM favorite_links");
 
-            return result.rows[0];
+            return result.rows;
         } catch (error) {
             throw new DatabaseException("Ocorreu um erro ao consultar banco de dados");
         }
