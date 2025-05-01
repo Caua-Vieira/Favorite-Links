@@ -13,7 +13,9 @@ export class GetAllFavoriteLinksUseCase {
         const links = await this.repository.getAll();
 
         if (!links) {
-            throw new NotFoundException("Links não encontrados")
+            throw new NotFoundException("Links não encontrados");
         }
+
+        return links;
     }
 }

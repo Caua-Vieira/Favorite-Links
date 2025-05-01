@@ -10,6 +10,6 @@ export class CreateFavoriteLinksUseCase {
     ) { }
 
     public async execute(input: IFavoriteLinks) {
-        await this.repository.create(input);
+        return await this.repository.create(input);
     }
 }
