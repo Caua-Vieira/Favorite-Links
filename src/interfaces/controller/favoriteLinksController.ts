@@ -31,7 +31,11 @@ export class FavoriteLinksController {
     }
 
     async updateLink(req: Request, res: Response) {
-        const updatedLink = await this.updateUseCase.execute(req.body);
+        const linkData = {
+            ...req.body,
+            id: req.params.id
+        }
+        const updatedLink = await this.updateUseCase.execute(linkData);
         res.status(200).json(updatedLink);
     }
 }
