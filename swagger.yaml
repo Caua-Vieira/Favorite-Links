@@ -1,0 +1,85 @@
+openapi: 3.0.0
+info:
+  title: Favorite Links API
+  version: 1.0.0
+  description: API para gerenciar links favoritos
+
+servers:
+  - url: http://localhost:8000
+    description: Local server
+
+paths:
+  /links:
+    get:
+      summary: Retorna todos os links favoritos
+      responses:
+        '200':
+          description: Lista de links
+
+    post:
+      summary: Cria um novo link favorito
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FavoriteLinkInput'
+      responses:
+        '201':
+          description: Link criado com sucesso
+
+  /links/{id}:
+    put:
+      summary: Atualiza um link favorito
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID do link a ser atualizado
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FavoriteLinkInput'
+      responses:
+        '200':
+          description: Link atualizado com sucesso
+        '404':
+          description: Link não encontrado
+
+    delete:
+      summary: Deleta um link favorito
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID do link a ser deletado
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Link deletado com sucesso
+        '404':
+          description: Link não encontrado
+
+components:
+  schemas:
+    FavoriteLinkInput:
+      type: object
+      required:
+        - title
+        - url
+        - category
+      properties:
+        title:
+          type: string
+          example: Meu Link Favorito
+        url:
+          type: string
+          example: https://linkedin.com
+        category:
+          type: string
+          example: Rede social
