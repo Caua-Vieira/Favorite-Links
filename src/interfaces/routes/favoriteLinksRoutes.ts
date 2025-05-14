@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { FavoriteLinksController } from "../controller/favoriteLinksController";
+import { FavoriteLinksController } from "../controllers/favoriteLinksController";
 
 export const favoriteLinksRouter = (controller: FavoriteLinksController): Router => {
     const router = Router();
