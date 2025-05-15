@@ -1,6 +1,7 @@
 import { Inject } from "typescript-ioc";
 import { AbstractFavoriteLinksRepository } from "../domain/contracts/abstractFavoriteLinksRepository";
 import { IFavoriteLinks } from "../domain/types/favoriteLinksInterface";
+import { NotFoundException } from "../domain/errors/errors";
 
 export class UpdateFavoriteLinksUseCase {
 
@@ -10,6 +11,12 @@ export class UpdateFavoriteLinksUseCase {
     ) { }
 
     public async execute(input: IFavoriteLinks) {
-        return await this.repository.update(input);
+        const result = await this.repository.update(input);
+
+        if (!result) {
+            throw new NotFoundException('Link não encontrado para atualização');
+        }
+
+        return result
     }
 }

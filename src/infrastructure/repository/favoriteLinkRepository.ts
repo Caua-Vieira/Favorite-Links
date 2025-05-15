@@ -29,9 +29,11 @@ export class FavoriteLinkRepository implements AbstractFavoriteLinksRepository {
         }
     }
 
-    async delete(id: number): Promise<void> {
+    async delete(id: number): Promise<boolean> {
         try {
-            await pool.query("DELETE FROM favorite_links WHERE id = $1", [id]);
+            const result = await pool.query("DELETE FROM favorite_links WHERE id = $1", [id]);
+
+            return (result.rowCount ?? 0) > 0;
         } catch (error) {
             throw new DatabaseException("Ocorreu um erro ao tentar deletar link do banco de dados");
         }
@@ -44,7 +46,7 @@ export class FavoriteLinkRepository implements AbstractFavoriteLinksRepository {
                 [favoriteLink.title, favoriteLink.url, favoriteLink.category, favoriteLink.id]
             );
 
-            return result.rows[0];
+            return result.rows[0] || null;
         } catch (error) {
             throw new DatabaseException("Ocorreu um erro ao tentar atualizar links cadastrados");
         }
