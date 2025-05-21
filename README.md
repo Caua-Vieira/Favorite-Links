@@ -16,13 +16,12 @@ API RESTful desenvolvida com Node.js e TypeScript para o gerenciamento de links 
 
 ## 🧰 Tecnologias Utilizadas
 
-- [Node.js](https://nodejs.org/)
-- [TypeScript](https://www.typescriptlang.org/)
-- [Express](https://expressjs.com/)
-- [PostgreSQL](https://www.postgresql.org/)
-- [Docker](https://www.docker.com/)
-- [Swagger](https://swagger.io/) para documentação da API
-- [ESLint](https://eslint.org/) + [Prettier](https://prettier.io/) para padronização de código
+- [Node.js]
+- [TypeScript]
+- [Express]
+- [PostgreSQL]
+- [Docker]
+- [Swagger] para documentação da API
 
 ---
 
@@ -37,27 +36,30 @@ POSTGRES_DB=favorite_links_db
 ```
 
 2. Execute o Docker:
+```bash
 docker compose up -d
+```
 
 ## 📦 Instalação e execução
 
-1. Execute npm install
-
-2. Execute npm run dev
+1. Execute
+```bash
+npm install
+npm run dev
+```
 
 ## 🗂️ Endpoints da API
 
-Acesse a documentação Swagger:  
-**http://localhost:8000/api-docs**
+Documentação Swagger:  
 
 **Principais rotas:**
-GET /links → Lista todos os links
-POST /links → Cria um novo link
-PUT /links/:id → Atualiza um link existente
-DELETE /links/:id → Remove um link
+- GET /links → Lista todos os links
+- POST /links → Cria um novo link
+- PUT /links/:id → Atualiza um link existente
+- DELETE /links/:id → Remove um link
 
 ## 📁 Estrutura do Projeto
-
+```text
 src/
 ├── controllers/
 ├── usecases/
@@ -67,7 +69,7 @@ src/
 ├── database/
 ├── utils/
 └── config/
-
+```
 ## ✍️ Autor
 
 Feito por [Cauã Vieira](https://www.linkedin.com/in/cau%C3%A3-vieira/)
